@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamil Nadu Recipes — Famous Dishes</title>
+
+    <!-- ============================== -->
+    <!-- style.css — Embedded for portability -->
+    <!-- ============================== -->
+    <style>
+        :root {
+            /* ── Warm, Appetizing Color Palette ── */
+            --bg-warm: #FFF9F3;
+            --cream: #FFFDF8;
+            --card-bg: #FFFFFF;
+            --text-dark: #2C1810;
+            --text-medium: #5D4037;
+            --text-light: #8D6E63;
+            --accent-orange: #D35400;
+            --accent-deep: #C0392B;
+            --accent-gold: #F39C12;
+            --accent-light: #FDEBD0;
+            --border-warm: #F0D9C0;
+            --shadow-sm: 0 2px 8px rgba(120, 60, 20, 0.08);
+            --shadow-md: 0 6px 20px rgba(120, 60, 20, 0.12);
+            --shadow-lg: 0 12px 32px rgba(120, 60, 20, 0.16);
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 22px;
+            --transition-fast: 0.2s ease;
+            --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-heading: Georgia, 'Times New Roman', 'Noto Serif Tamil', serif;
+            --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-warm);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ============================== */
+        /* 🟠 SPLASH SCREEN              */
+        /* ============================== */
+        .splash-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(160deg, #D35400 0%, #E67E22 25%, #F39C12 50%, #FDEBD0 100%);
+            background-size: 200% 200%;
+            animation: splashGradientShift 4s ease infinite;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+        }
+
+        .splash-screen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        @keyframes splashGradientShift {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .splash-content {
+            text-align: center;
+            animation: splashTextBreathe 2.2s ease-in-out infinite;
+        }
+
+        @keyframes splashTextBreathe {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.06);
+            }
+        }
+
+        .splash-icon {
+            font-size: 4.5rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            animation: splashIconFloat 2.5s ease-in-out infinite;
+        }
+
+        @keyframes splashIconFloat {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-14px);
+            }
+        }
+
+        .splash-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.4rem, 5vw, 4.2rem);
+            color: #FFFFFF;
+            text-shadow: 0 3px 18px rgba(160, 50, 0, 0.45), 0 1px 4px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.03em;
+            line-height: 1.2;
+        }
+
+        .splash-subtitle {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-top: 0.6rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        /* Steam wisps (decorative) */
+        .steam-wisp {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.18);
+            filter: blur(30px);
+            animation: steamRise 3.5s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .steam-wisp:nth-child(1) {
+            top: 18%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+        .steam-wisp:nth-child(2) {
+            top: 22%;
+            right: 18%;
+            animation-delay: 1.2s;
+            width: 50px;
+            height: 50px;
+        }
+        .steam-wisp:nth-child(3) {
+            bottom: 25%;
+            left: 25%;
+            animation-delay: 2.4s;
+            width: 70px;
+            height: 70px;
+        }
+
+        @keyframes steamRise {
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.35;
+            }
+            50% {
+                transform: translateY(-40px) scale(1.5);
+                opacity: 0.08;
+            }
+        }
+
+        /* ============================== */
+        /* 🏠 MAIN PAGE LAYOUT           */
+        /* ============================== */
+        .main-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.5rem 1.2rem 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Header */
+        .site-header {
+            text-align: center;
+            padding-top: 1rem;
+        }
+        .site-title {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            color: var(--accent-deep);
+            letter-spacing: 0.02em;
+            margin-bottom: 0.25rem;
+        }
+        .site-tagline {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* Search Bar */
+        .search-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 0.9rem 1.2rem 0.9rem 3rem;
+            font-size: 1.05rem;
+            font-family: var(--font-body);
+            border: 2px solid var(--border-warm);
+            border-radius: 50px;
+            background: var(--card-bg);
+            color: var(--text-dark);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-smooth);
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: var(--accent-orange);
+            box-shadow: var(--shadow-md), 0 0 0 5px rgba(211, 84, 0, 0.07);
+        }
+        .search-input::placeholder {
+            color: #BBA89A;
+        }
+        .search-icon {
+            position: absolute;
+            left: 1.15rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: #C5A58F;
+            pointer-events: none;
+            transition: color var(--transition-fast);
+        }
+        .search-input:focus~.search-icon,
+        .search-wrapper:focus-within .search-icon {
+            color: var(--accent-orange);
+        }
+
+        /* No-results message */
+        .no-results {
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--text-light);
+            padding: 2rem 1rem;
+            display: none;
+            grid-column: 1 / -1;
+            font-style: italic;
+        }
+        .no-results.visible {
+            display: block;
+        }
+
+        /* ── Dish Grid ── */
+        .dish-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 1.1rem;
+            width: 100%;
+        }
+
+        /* Dish Button Card */
+        .dish-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1.3rem 1rem;
+            min-height: 80px;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: var(--text-dark);
+            background: var(--card-bg);
+            border: 2px solid transparent;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            word-break: break-word;
+            hyphens: auto;
+        }
+
+        /* Subtle warm accent line on top */
+        .dish-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20%;
+            right: 20%;
+            height: 3px;
+            background: var(--accent-gold);
+            border-radius: 0 0 4px 4px;
+            opacity: 0;
+            transform: scaleX(0.4);
+            transition: all var(--transition-smooth);
+        }
+
+        .dish-btn:hover::before,
+        .dish-btn:focus-visible::before {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        .dish-btn:hover,
+        .dish-btn:focus-visible {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-gold);
+            background: #FFFBF6;
+            color: var(--accent-deep);
+        }
+
+        .dish-btn:active {
+            transform: scale(0.96);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.1s ease;
+        }
+
+        .dish-btn:focus-visible {
+            outline: 3px solid var(--accent-orange);
+            outline-offset: 3px;
+        }
+
+        /* Subtle background shimmer on hover */
+        .dish-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(243, 156, 18, 0.08) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+            pointer-events: none;
+            border-radius: var(--radius-md);
+        }
+        .dish-btn:hover::after {
+            opacity: 1;
+        }
+
+        /* ============================== */
+        /* 📋 DISH DETAILS VIEW          */
+        /* ============================== */
+        .dish-details-view {
+            display: none;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.5rem 1.2rem 3rem;
+            animation: detailsFadeIn 0.45s ease;
+        }
+        .dish-details-view.active {
+            display: block;
+        }
+
+        @keyframes detailsFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.5rem;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #FFFFFF;
+            background: var(--accent-orange);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-smooth);
+            margin-bottom: 1.8rem;
+            letter-spacing: 0.03em;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .back-btn:hover,
+        .back-btn:focus-visible {
+            background: var(--accent-deep);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        .back-btn:active {
+            transform: scale(0.95);
+        }
+        .back-arrow {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        /* Dish image */
+        .dish-image-container {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 1.8rem;
+            aspect-ratio: 16 / 9;
+            background: var(--accent-light);
+            position: relative;
+        }
+        .dish-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .dish-image-container:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Dish name heading */
+        .dish-details-name {
+            font-family: var(--font-heading);
+            font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+            color: var(--accent-deep);
+            margin-bottom: 1.8rem;
+            text-align: center;
+            letter-spacing: 0.02em;
+            line-height: 1.3;
+        }
+
+        /* Sections */
+        .recipe-section {
+            background: var(--card-bg);
+            border-radius: var(--radius-md);
+            padding: 1.5rem 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--accent-gold);
+            transition: box-shadow var(--transition-fast);
+        }
+        .recipe-section:hover {
+            box-shadow: var(--shadow-md);
+        }
+        .recipe-section h2 {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            color: var(--accent-orange);
+            margin-bottom: 1rem;
+            letter-spacing: 0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .recipe-section ul,
+        .recipe-section ol {
+            padding-left: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+        .recipe-section li {
+            font-size: 0.98rem;
+            color: var(--text-medium);
+            line-height: 1.55;
+            padding-left: 0.3rem;
+        }
+        .recipe-section ul li::marker {
+            color: var(--accent-orange);
+            content: '• ';
+            font-size: 1.3rem;
+        }
+        .recipe-section ol {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+        .recipe-section ol li {
+            counter-increment: step-counter;
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+        }
+        .recipe-section ol li::before {
+            content: counter(step-counter);
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--accent-orange);
+            color: #FFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-top: 1px;
+        }
+
+        /* YouTube Section */
+        .youtube-section {
+            background: var(--card-bg);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid #E74C3C;
+            margin-top: 0.5rem;
+        }
+        .youtube-section h2 {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            color: #C0392B;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: 0.02em;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-sm);
+            background: #1a1a1a;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: var(--radius-sm);
+        }
+
+        /* ============================== */
+        /* 📱 RESPONSIVE BREAKPOINTS     */
+        /* ============================== */
+        @media (max-width: 600px) {
+            .dish-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+            .dish-btn {
+                padding: 1rem 0.7rem;
+                min-height: 68px;
+                font-size: 0.9rem;
+                border-radius: var(--radius-sm);
+            }
+            .main-container {
+                padding: 1rem 0.8rem 2rem;
+                gap: 1.4rem;
+            }
+            .dish-details-view {
+                padding: 1rem 0.8rem 2rem;
+            }
+            .recipe-section {
+                padding: 1.2rem 1rem;
+            }
+            .search-input {
+                font-size: 0.95rem;
+                padding: 0.75rem 1rem 0.75rem 2.7rem;
+            }
+            .site-title {
+                font-size: 1.5rem;
+            }
+            .splash-title {
+                font-size: 2rem;
+            }
+            .splash-icon {
+                font-size: 3.2rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .dish-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.6rem;
+            }
+            .dish-btn {
+                padding: 0.85rem 0.5rem;
+                min-height: 60px;
+                font-size: 0.82rem;
+                border-radius: 10px;
+            }
+            .search-input {
+                font-size: 0.88rem;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 900px) {
+            .dish-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+            .dish-btn {
+                font-size: 0.95rem;
+                min-height: 76px;
+            }
+        }
+
+        @media (min-width: 901px) {
+            .dish-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1.2rem;
+            }
+            .dish-btn {
+                font-size: 1rem;
+                min-height: 84px;
+            }
+        }
+
+        /* Accessibility: Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .splash-screen {
+                animation: none;
+                transition: opacity 0.4s ease, visibility 0.4s ease;
+            }
+            .splash-content {
+                animation: none;
+            }
+            .splash-icon {
+                animation: none;
+            }
+            .steam-wisp {
+                animation: none;
+                display: none;
+            }
+            .dish-btn {
+                transition: opacity 0.15s ease, transform 0.15s ease;
+            }
+            .dish-details-view {
+                animation: none;
+            }
+            .dish-image-container img {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================== -->
+    <!-- 🟠 SPLASH SCREEN              -->
+    <!-- ============================== -->
+    <div class="splash-screen" id="splashScreen" aria-hidden="false" role="dialog" aria-label="Welcome splash screen">
+        <!-- Decorative steam wisps -->
+        <div class="steam-wisp" aria-hidden="true"></div>
+        <div class="steam-wisp" aria-hidden="true"></div>
+        <div class="steam-wisp" aria-hidden="true"></div>
+
+        <div class="splash-content">
+            <span class="splash-icon" aria-hidden="true">🍲</span>
+            <h1 class="splash-title">Happy Cooking!</h1>
+            <p class="splash-subtitle">Discover Tamil Nadu's Finest Recipes</p>
+        </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- 🏠 MAIN HOME PAGE             -->
+    <!-- ============================== -->
+    <div class="main-container" id="mainPage" aria-label="Main recipe menu">
+        <header class="site-header">
+            <h1 class="site-title">Tamil Nadu Recipes</h1>
+            <p class="site-tagline">A taste of tradition from the heart of South India</p>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="search-wrapper">
+            <span class="search-icon" aria-hidden="true">🔍</span>
+            <input
+            type="text"
+            class="search-input"
+            id="searchInput"
+            placeholder="Search for a dish... (e.g., Biryani, Rice)"
+            autocomplete="off"
+            aria-label="Search dishes"
+            >
+        </div>
+
+        <!-- Dish Buttons Grid -->
+        <div class="dish-grid" id="dishGrid" role="list" aria-label="List of Tamil Nadu dishes">
+            <!-- Buttons are dynamically rendered by JavaScript -->
+        </div>
+
+        <!-- No-results message (hidden by default) -->
+        <p class="no-results" id="noResults" role="status" aria-live="polite">
+            😕 No dishes found. Try a different search term!
+        </p>
+    </div>
+
+    <!-- ============================== -->
+    <!-- 📋 DISH DETAILS VIEW (SPA)    -->
+    <!-- ============================== -->
+    <div class="dish-details-view" id="dishDetailsView" aria-label="Dish recipe details">
+        <!-- "Back to Home" button -->
+        <button class="back-btn" id="backBtn" aria-label="Go back to main menu">
+            <span class="back-arrow">←</span> Back to Home
+        </button>
+
+        <!-- Dish image -->
+        <div class="dish-image-container">
+            <img
+            id="dishDetailImage"
+            src=""
+            alt="Dish image"
+            loading="lazy"
+            >
+        </div>
+
+        <!-- Dish name -->
+        <h2 class="dish-details-name" id="dishDetailName"></h2>
+
+        <!-- Ingredients Section -->
+        <div class="recipe-section" id="ingredientsSection">
+            <h2>🥄 Ingredients</h2>
+            <ul id="ingredientsList"></ul>
+        </div>
+
+        <!-- Procedure Section -->
+        <div class="recipe-section" id="stepsSection">
+            <h2>📝 Step-by-Step Procedure</h2>
+            <ol id="stepsList"></ol>
+        </div>
+
+        <!-- YouTube Video Section -->
+        <div class="youtube-section" id="youtubeSection">
+            <h2>📺 Watch Recipe Video</h2>
+            <div class="video-container">
+                <iframe
+                id="youtubeIframe"
+                src=""
+                title="YouTube recipe video"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                loading="lazy"
+            >
+        </iframe>
+    </div>
+</div>
+</div>
+
+<!-- ============================== -->
+<!-- script.js — Embedded           -->
+<!-- ============================== -->
+<script>
+    (function() {
+        // ──────────────────────────────────────────────
+        // 🟠 SPLASH SCREEN LOGIC
+        // ──────────────────────────────────────────────
+        const splashScreen = document.getElementById('splashScreen');
+        const SPLASH_DURATION_MS = 2600; // 2.6 seconds before fade-out begins
+        const FADE_OUT_DURATION_MS = 800; // Must match CSS transition (0.8s)
+
+        // After the splash duration, add the fade-out class
+        setTimeout(() => {
+            splashScreen.classList.add('fade-out');
+
+            // After the fade transition completes, set aria-hidden
+            setTimeout(() => {
+                splashScreen.setAttribute('aria-hidden', 'true');
+            }, FADE_OUT_DURATION_MS);
+        }, SPLASH_DURATION_MS);
+
+        // ──────────────────────────────────────────────
+        // 📊 DATA STRUCTURE: Array of Dish Objects
+        // ──────────────────────────────────────────────
+        // 🔴🔴🔴 IMPORTANT — WHERE TO PASTE YOUR OWN DATA 🔴🔴🔴
+        // For each dish, replace the following placeholder fields:
+        //   - imageUrl      → Your own image path or URL
+        //   - ingredients[] → Your own ingredients list
+        //   - steps[]       → Your own step-by-step instructions
+        //   - youtubeEmbedLink → Your own YouTube embed URL
+        //
+        // YouTube Embed URL format:
+        //   "https://www.youtube.com/embed/VIDEO_ID_HERE"
+        //   Example: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+        //   (Replace VIDEO_ID_HERE with the actual YouTube video ID)
+        // ──────────────────────────────────────────────
+
+        const dishes = [{
+            id: 1,
+            name: 'Sambar Sadham',
+            // 🔴 Replace with your own image URL or path:
+            imageUrl: 'https://melam.com/wp-content/uploads/2022/12/kerala-sambar.jpg',
+            ingredients: [
+                '1 cup rice (preferably short-grain like ponni)',
+                '½ cup toor dal (pigeon peas / thuvaram paruppu)',
+                '1 small lemon-sized tamarind (soaked in warm water)',
+                '1 drumstick, cut into 3-inch pieces',
+                '1 carrot, diced into small cubes',
+                '½ cup pearl onions (shallots / chinna vengayam), peeled',
+                '1 ripe tomato, chopped',
+                '2 tablespoons sambar powder',
+                '¼ teaspoon turmeric powder',
+                'Salt — to taste',
+                '2 tablespoons ghee (or sesame oil)',
+                '1 teaspoon mustard seeds',
+                '½ teaspoon cumin seeds',
+                'A pinch of asafoetida (hing / perungayam)',
+                '2 dry red chilies, broken',
+                '1 sprig fresh curry leaves',
+                'Fresh coriander leaves — for garnish (optional)',
+                'Extra water — as needed to adjust consistency',
+            ],
+            steps: [
+                'Wash the rice and toor dal together thoroughly. Drain and add 3 cups of water. Pressure cook on medium heat for 3–4 whistles until soft and mushy.',
+                'While the rice-dal cooks, soak the tamarind in ½ cup of warm water for 15 minutes. Squeeze well and extract the juice. Discard the pulp.',
+                'In a heavy-bottomed kadai or deep pan, heat the ghee over medium flame. Add mustard seeds and wait until they splutter.',
+                'Immediately add cumin seeds, asafoetida, broken dry red chilies, and curry leaves. Sauté for 30 seconds until fragrant.',
+                'Add the pearl onions and sauté until they turn translucent and golden at the edges — about 2–3 minutes.',
+                'Toss in the chopped tomatoes, drumstick pieces, and diced carrots. Stir and cook for 3–4 minutes until the tomatoes soften.',
+                'Sprinkle in the sambar powder, turmeric powder, and salt. Stir well to coat the vegetables evenly with the spices.',
+                'Pour in the tamarind extract and 1 cup of water. Bring the mixture to a rolling boil, then reduce the heat. Simmer for 10–12 minutes until the drumstick and carrots are fork-tender.',
+                'Once the pressure cooker releases naturally, open it and mash the rice-dal mixture thoroughly with a ladle until smooth and porridge-like.',
+                'Transfer the mashed rice-dal into the simmering sambar-vegetable mixture. Stir continuously to combine without lumps.',
+                'Add extra hot water if needed — Sambar Sadham should be slightly loose (like a thick porridge) as it thickens upon cooling.',
+                'Simmer everything together on low heat for 5–7 minutes, stirring occasionally so it doesn\'t stick to the bottom.',
+                'Finish with a drizzle of ghee on top and a few fresh curry leaves. Garnish with chopped coriander if desired.',
+                'Serve hot in bowls with a side of crispy appalam (papad) or a spoonful of pickle. Enjoy!',
+            ],
+            // 🔴 Replace with your own YouTube embed URL:
+            youtubeEmbedLink: 'https://www.youtube.com/embed/E4rpmzWckhA?si=CaTkYt0Eq1tjkxSb',
+        }, {
+            id: 2,
+            name: 'Curd Rice',
+            // 🔴 Replace: imageUrl
+            imageUrl: 'https://healthyindianrecipes.com/wp-content/uploads/2025/10/curd-rice-dish-191025.jpg',
+            // 🔴 Replace: ingredients
+            ingredients: ['[1 cup rice (preferably short-grain like ponni)]', '[1½ cups plain yogurt (curd / thayir)]', '[1 teaspoon mustard seeds]', '[½ teaspoon cumin seeds]', '[A pinch of asafoetida (hing / perungayam)]', '[2 dry red chilies, broken]', '[1 sprig fresh curry leaves]', '[2 tablespoons ghee (or sesame oil)]', '[Salt — to taste]', '[Fresh coriander leaves — for garnish (optional)]'],
+            // 🔴 Replace: steps
+            steps: ['[Cook the rice and let it cool slightly.]', '[In a pan, heat ghee and add mustard seeds, cumin seeds, asafoetida, dry red chilies, and curry leaves. Sauté until fragrant.]', '[Mix the cooked rice with yogurt and salt in a large bowl. Adjust consistency with water if needed.]', '[Pour the tempering over the curd rice and mix well.]', '[Garnish with fresh coriander leaves and serve chilled or at room temperature.]'],
+            // 🔴 Replace: youtubeEmbedLink
+            youtubeEmbedLink: 'https://www.youtube.com/embed/UAkOKWpP1y8?si=pRut68ZdyCUGVJlf',
+        }, {
+            id: 3,
+            name: 'Tamarind Rice',
+            // (Also known as Puli Sadham)
+            // 🔴 Replace: imageUrl
+            imageUrl: 'https://i.ytimg.com/vi/NLbs9PHJvtQ/maxresdefault.jpg',
+            // 🔴 Replace: ingredients
+            ingredients: ['[Rice, tamarind extract, oil, mustard seeds, chana dal, urad dal, dried red chilies, curry leaves, turmeric powder, peanuts, salt.]'],
+            // 🔴 Replace: steps1 cup basmati rice (or regular rice),2 large tomatoes, finely chopped,1 onion, sliced,2 green chilies, slit,1 tsp ginger-garlic paste,2 tbsp oil,½ tsp mustard seeds,½ tsp cumin seeds,1 sprig curry leaves,¼,tsp turmeric powder,1 tsp red chili powder,½ tsp garam masala,Salt to taste,2 cups water,Coriander leaves for garnish
+            steps: ['[Cook rice and let it cool, prepare a tempering with oil, mustard seeds, dals, chilies, and curry leaves, add tamarind extract, turmeric, and salt and cook until thick, mix with the cooked rice, add peanuts, and serve. 🍛]'],
+            // 🔴 Replace: youtubeEmbedLink
+            youtubeEmbedLink: 'https://www.youtube.com/embed/XpSaUF--Vz0?si=HoWzfvpTrONGPBLj',
+        }, {
+            id: 4,
+            name: 'Lemon Rice',
+            // 🔴 Replace: imageUrl
+            imageUrl: 'https://aartimadan.com/wp-content/uploads/2022/04/Lemon-Rice.jpg',
+            // 🔴 Replace: ingredients
+            ingredients: ['[Rice, lemon juice, oil, mustard seeds, urad dal, chana dal, green chilies, curry leaves, turmeric powder, peanuts, salt.]'],
+            // 🔴 Replace: steps
+            steps: ['[Cook rice and let it cool, heat oil and add mustard seeds, urad dal, chana dal, green chilies, curry leaves, turmeric, and peanuts, sauté for a minute, add the cooked rice and salt, mix well, turn off the heat, add lemon juice, mix gently, and serve. 🍋🍚]'],
+            // 🔴 Replace: youtubeEmbedLink
+            youtubeEmbedLink: 'https://www.youtube.com/embed/As_r_YRGE0k?si=l_eQFWGSd2m6LI5T',
+        }, {
+            id: 5,
+            name: 'Tomato Rice',
+            // 🔴 Replace: imageUrl
+            imageUrl: 'https://3.bp.blogspot.com/-MSsvCiWcdWU/UuAA93Tu2EI/AAAAAAAAAzY/9HlNsKwMQHc/s1600/tomato+rice.JPG',
+            // 🔴 Replace: ingredients
+            ingredients: ['[1 cup basmati rice (or regular rice),2 large tomatoes, finely chopped,1 onion, sliced,2 green chilies, slit,1 tsp ginger-garlic paste,2 tbsp oil,½ tsp mustard seeds,½ tsp cumin seeds,1 sprig curry leaves,¼,tsp turmeric powder,1 tsp red chili powder,½ tsp garam masala,Salt to taste,2 cups water,Coriander leaves for garnish]'],
+            // 🔴 Replace: steps
+            steps: ['[Wash and soak the rice for 15–20 minutes, heat oil in a pan or cooker, add mustard seeds, cumin seeds, and curry leaves, add sliced onions and sauté until golden, add ginger-garlic paste and cook for 1 minute, add tomatoes and green chilies and cook until the tomatoes become soft, add turmeric, chili powder, garam masala, and salt and mix well, add rice and gently mix for 1 minute, pour in 2 cups of water, cook until the rice is done (pressure cooker: 2 whistles, pot: 15–20 minutes on low flame), garnish with coriander leaves and serve hot. Serving suggestions: onion raita, potato fry, papad, and pickle. Preparation time: 10 minutes, cooking time: 20 minutes, serves 2–3 people.]'],
+            // 🔴 Replace: youtubeEmbedLink
+            youtubeEmbedLink: 'https://www.youtube.com/embed/5bzxFS3KAzw?si=hX7uoslp2PUx_-Es',
+        }, {
+            id: 6,
+            name: 'Curry Leaves Rice',
+            // 🔴 Replace: imageUrl
+            imageUrl: 'https://placehold.co/600x400/FDF6EE/D35400?text=Curry+Leaves+Rice',
+            // 🔴 Replace: ingredients
+            ingredients: ['[Rice, curry leaves, oil, mustard seeds, urad dal, chana dal, dried red chilies, peanuts, garlic (optional), salt.]'],
+            // 🔴 Replace: steps
+            steps: ['[Cook rice and let it cool, grind curry leaves with red chilies and garlic into a coarse paste, heat oil and add mustard seeds, urad dal, chana dal, and peanuts, sauté until golden, add the curry leaf paste and cook for 2–3 minutes, mix in the cooked rice and salt, stir well, and serve. 🌿🍚]'],
+            // 🔴 Replace: youtubeEmbedLink
+            youtubeEmbedLink: 'https://www.youtube-nocookie.com/embed/2CTA4Q9RKTo?si=p0GGtCHRSwzLFqws&amp',
+            // 🔴 Replace: videoEmbed
+        
+        }, {
+            id: 7,
+            name: 'Coconut Rice',
+            // 🔴 Replace: imageUrl
+            imageUrl: 'https://www.lifestylefoodies.com/wp-content/uploads/2023/01/The-Best-Coconut-Rice-Instant-Pot.jpg',
+            // 🔴 Replace: ingredients
+            ingredients: ['[Rice, grated coconut, oil, mustard seeds, urad dal, chana dal, green chilies or dried red chilies, curry leaves, cashews or peanuts, salt.]'],
+            // 🔴 Replace: steps
+            steps: ['[Cook rice and let it cool, heat oil and add mustard seeds, urad dal, chana dal, chilies, curry leaves, and cashews or peanuts, sauté until golden, add grated coconut and cook for 1–2 minutes, add the cooked rice and salt, mix well, and serve. 🥥🍚]'],
+            // 🔴 Replace: youtubeEmbedLink
+            youtubeEmbedLink: 'https://www.youtube.com/embed/2qChUEcSqnI?si=uteMylApq5TJzAkn',
+        }, {
+            id: 8,
+            name: 'Ambur Biryani',
+            // 🔴 Replace: imageUrl
+            imageUrl: 'https://i.ytimg.com/vi/NRgAFCNyUwk/maxresdefault.jpg',
+            // 🔴 Replace: ingredients
+            ingredients: ['[Rice, meat (chicken or mutton), onions, tomatoes, ginger-garlic paste, spices, yogurt, ghee, fried onions, mint leaves, coriander leaves.]'],
+            // 🔴 Replace: steps
+            steps: ['[Marinate the meat with spices and yogurt, cook the rice separately, layer the meat and rice in a pot with ghee and fried onions, cover and cook on low heat until done, garnish with mint and coriander leaves and serve. 🍛🍚]'],
+            // 🔴 Replace: youtubeEmbedLink
+            youtubeEmbedLink: 'https://www.youtube.com/embed/NRgAFCNyUwk?si=YcwA3lfJr1ABqcPt',
+        }, {
+            id: 9,
+            name: 'Dindigul Biryani',
+            // 🔴 Replace: imageUrl
+            imageUrl: 'https://i.pinimg.com/736x/d9/e4/d0/d9e4d0cff1b0b005319a4029a0241bbd.jpg',
+            // 🔴 Replace: ingredients
+            ingredients: ['[Rice, meat (chicken or mutton), onions, tomatoes, ginger-garlic paste, spices, yogurt, ghee, fried onions, mint leaves, coriander leaves.]'],
+            // 🔴 Replace: steps
+            steps: ['[Marinate the meat with spices and yogurt, cook the rice separately, layer the meat and rice in a pot with ghee and fried onions, cover and cook on low heat until done, garnish with mint and coriander leaves and serve. 🍛🍚]'],
+            // 🔴 Replace: youtubeEmbedLink
+            youtubeEmbedLink: 'https://www.youtube.com/embed/BH02xH64iZI?si=JvsxnhGkTKbPXq4t',
+        }, {
+            id: 10,
+            name: 'Arisi Paruppu Sadham',
+            // 🔴 Replace: imageUrl
+            imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgvS0YxKQHcuQqxc64IrEjwYgWaGtgmALoa8VhL9PLSR1GvjGLg1tpnt1shhuaJEgyDjLd8fFpZp35tFKH2ulWasP6__mo_Myp1YEHqkThc-Rt1FsdTTzH-Rv_Hsuu7OrqseFDLHIly8Td7-9aokaWSRTgM2HLxxdoPnVIx_XO-nS42yb3xDVx6V-VbMU/w640-h488/kongu-arisi-paruppu-sadham.jpg',
+            // 🔴 Replace: ingredients
+            ingredients: ['[Rice, lentils, coconut, oil, mustard seeds, urad dal, chana dal, green chilies or dried red chilies, curry leaves, cashews or peanuts, salt.]'],
+            // 🔴 Replace: steps
+            steps: ['[Marinate the lentils with spices and coconut, cook the rice separately, layer the lentils and rice in a pot with oil and mustard seeds, cover and cook on low heat until done, garnish with curry leaves and serve. 🍛🍚]'],
+            // 🔴 Replace: youtubeEmbedLink
+            youtubeEmbedLink: 'https://www.youtube.com/embed/0Eiipb-FFn0?si=b0JodK20QMHP6CO1',
+        }];
+
+        // ──────────────────────────────────────────────
+        // 🏗️ DOM REFERENCES
+        // ──────────────────────────────────────────────
+        const dishGrid = document.getElementById('dishGrid');
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
+        const mainPage = document.getElementById('mainPage');
+        const dishDetailsView = document.getElementById('dishDetailsView');
+        const backBtn = document.getElementById('backBtn');
+        const dishDetailImage = document.getElementById('dishDetailImage');
+        const dishDetailName = document.getElementById('dishDetailName');
+        const ingredientsList = document.getElementById('ingredientsList');
+        const stepsList = document.getElementById('stepsList');
+        const youtubeIframe = document.getElementById('youtubeIframe');
+
+        // ──────────────────────────────────────────────
+        // 🔘 RENDER DISH BUTTONS INTO THE GRID
+        // ──────────────────────────────────────────────
+        function renderDishButtons(dishesArray) {
+            // Clear existing buttons
+            dishGrid.innerHTML = '';
+
+            if (dishesArray.length === 0) {
+                noResults.classList.add('visible');
+            } else {
+                noResults.classList.remove('visible');
+            }
+
+            dishesArray.forEach(dish => {
+                const button = document.createElement('button');
+                button.className = 'dish-btn';
+                button.textContent = dish.name;
+                button.setAttribute('role', 'listitem');
+                button.setAttribute('aria-label', `View recipe for ${dish.name}`);
+                button.addEventListener('click', () => openDishDetails(dish));
+                dishGrid.appendChild(button);
+            });
+        }
+
+        // ──────────────────────────────────────────────
+        // 🔍 REAL-TIME SEARCH FILTER
+        // ──────────────────────────────────────────────
+        function filterDishes() {
+            const query = searchInput.value.trim().toLowerCase();
+
+            if (query === '') {
+                // Show all dishes when search is empty
+                renderDishButtons(dishes);
+                return;
+            }
+
+            const filtered = dishes.filter(dish =>
+                dish.name.toLowerCase().includes(query)
+            );
+            renderDishButtons(filtered);
+        }
+
+        // Attach search event listener
+        searchInput.addEventListener('input', filterDishes);
+
+        // ──────────────────────────────────────────────
+        // 📋 OPEN DISH DETAILS (SPA Navigation)
+        // ──────────────────────────────────────────────
+        function openDishDetails(dish) {
+            // Populate the details view with dish data
+            dishDetailImage.src = dish.imageUrl;
+            dishDetailImage.alt = `Appetizing photo of ${dish.name}`;
+            dishDetailName.textContent = dish.name;
+
+            // Populate ingredients list
+            ingredientsList.innerHTML = '';
+            dish.ingredients.forEach(ingredient => {
+                const li = document.createElement('li');
+                li.textContent = ingredient;
+                ingredientsList.appendChild(li);
+            });
+
+            // Populate steps list
+            stepsList.innerHTML = '';
+            dish.steps.forEach(step => {
+                const li = document.createElement('li');
+                li.textContent = step;
+                stepsList.appendChild(li);
+            });
+
+            // 🔴🔴🔴 YOUTUBE EMBED LOGIC 🔴🔴🔴
+            // The youtubeEmbedLink should be a full YouTube embed URL:
+            // Format: "https://www.youtube.com/embed/VIDEO_ID"
+            // If you want to dynamically construct it from a video ID later,
+            // you could store just the ID and build the URL here, e.g.:
+            //   youtubeIframe.src = `https://www.youtube.com/embed/${dish.youtubeVideoId}`;
+            // For now, we use the full URL directly from the data object.
+            youtubeIframe.src = dish.youtubeEmbedLink;
+
+            // Switch views
+            mainPage.style.display = 'none';
+            dishDetailsView.classList.add('active');
+            dishDetailsView.style.display = 'block';
+
+            // Scroll to top of the details view
+            dishDetailsView.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // Update document title for accessibility
+            document.title = `${dish.name} — Tamil Nadu Recipes`;
+        }
+
+        // ──────────────────────────────────────────────
+        // ⬅️ BACK TO HOME BUTTON
+        // ──────────────────────────────────────────────
+        function goBackToHome() {
+            // Hide details view
+            dishDetailsView.classList.remove('active');
+            dishDetailsView.style.display = 'none';
+
+            // Show main page
+            mainPage.style.display = '';
+
+            // Clear the YouTube iframe src (stops video playback)
+            youtubeIframe.src = '';
+
+            // Reset document title
+            document.title = 'Tamil Nadu Recipes — Famous Dishes';
+
+            // Scroll to top of the main page
+            mainPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // Optionally clear the search bar when going back
+            // searchInput.value = '';
+            // renderDishButtons(dishes);
+        }
+
+        backBtn.addEventListener('click', goBackToHome);
+
+        // ──────────────────────────────────────────────
+        // ⌨️ KEYBOARD NAVIGATION: Escape key to go back
+        // ──────────────────────────────────────────────
+        document.addEventListener('keydown', (event) => {
+            if (
+                event.key === 'Escape' &&
+                dishDetailsView.classList.contains('active')
+            ) {
+                goBackToHome();
+                // Refocus the search input for convenience
+                searchInput.focus();
+            }
+        });
+
+        // ──────────────────────────────────────────────
+        // 🚀 INITIAL RENDER
+        // ──────────────────────────────────────────────
+        renderDishButtons(dishes);
+
+        // ──────────────────────────────────────────────
+        // 🔮 (Optional) Placeholder for future API logic
+        // ──────────────────────────────────────────────
+        // If you later want to fetch dish data from an API
+        // instead of the static array above, you can do:
+        //
+        // async function fetchDishes() {
+        //   try {
+        //     const response = await fetch('YOUR_API_ENDPOINT_HERE');
+        //     const data = await response.json();
+        //     // Map the API response to match the dishes structure
+        //     // Then call renderDishButtons(data);
+        //   } catch (error) {
+        //     console.error('Failed to fetch dishes:', error);
+        //   }
+        // }
+        //
+        // 🔴 PASTE YOUR API LOGIC ABOVE THIS COMMENT BLOCK 🔴
+
+        console.log('✅ Tamil Nadu Recipes website initialized successfully!');
+        console.log(`📊 Loaded ${dishes.length} dishes.`);
+        console.log('💡 Tip: Use the search bar to filter dishes in real-time.');
+        console.log('🔴 Remember to replace placeholder image URLs, ingredients, steps, and YouTube links in the `dishes` array.');
+    })();
+</script>
+
+</body>
+</html>
