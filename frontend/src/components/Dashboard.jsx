@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { logout } from '../firebase';
 
-const BASE_API = 'http://127.0.0.1:8000/api';
+const BASE_API = 'https://food-recipe-app-gv4x.onrender.com';
 
 function Dashboard({ user }) {
   const [step, setStep] = useState('countries'); // countries | states | dishes | recipe
