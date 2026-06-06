@@ -56,3 +56,19 @@ if __name__ == "__main__":
 
     # host முகவரியை "0.0.0.0" என்று கட்டாயம் கொடுக்க வேண்டும்
     uvicorn.run("main:app", host="0.0.0.0", port=port)
+
+    # Allow requests from React dev server, Localhost 5174, and Netlify
+    origins = [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:5174",
+        "https://recipeyyy-finder.netlify.app"
+    ]
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
