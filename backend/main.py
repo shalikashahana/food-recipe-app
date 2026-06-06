@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from data import RECIPE_DATA
+import os
+import uvicorn
 
 app = FastAPI()
 
@@ -44,6 +46,13 @@ def get_recipe(country: str, state: str, dish: str):
     except KeyError:
         return {"error": "Recipe not found"}
 
+
+
+# உங்கள் மற்ற API கோடிங்குகள் இங்கே இருக்கும்...
+
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    # Render தனியாக ஒரு Port-ஐ உருவாக்கும், அதை எடுக்க இதை பயன்படுத்த வேண்டும்
+    port = int(os.environ.get("PORT", 8000))
+
+    # host முகவரியை "0.0.0.0" என்று கட்டாயம் கொடுக்க வேண்டும்
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
