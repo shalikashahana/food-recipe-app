@@ -6,8 +6,14 @@ import uvicorn
 
 app = FastAPI()
 
-# Allow requests from React dev server
-origins = ["http://localhost:5173", "http://127.0.0.1:5173"]
+# 1. லோக்கல் ஹோஸ்ட் மற்றும் நெட்லிஃபை டொமைன்களுக்கான அனுமதி (CORS)
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:5174",
+    "https://recipeyyy-finder.netlify.app"
+]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -16,18 +22,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/api/countries")
+# 2. பிரண்ட்-எண்டிற்கு ஏற்றவாறு மாற்றி அமைக்கப்பட்ட புதிய Routes (No /api prefix)
+@app.get("/countries")
 def get_countries():
     return list(RECIPE_DATA.keys())
 
-@app.get("/api/states/{country}")
+@app.get("/states/{country}")
 def get_states(country: str):
     country_data = RECIPE_DATA.get(country)
     if not country_data:
         return {"error": "Country not found"}
     return list(country_data.keys())
 
-@app.get("/api/dishes/{country}/{state}")
+@app.get("/dishes/{country}/{state}")
 def get_dishes(country: str, state: str):
     country_data = RECIPE_DATA.get(country)
     if not country_data:
@@ -35,10 +42,9 @@ def get_dishes(country: str, state: str):
     state_data = country_data.get(state)
     if not state_data:
         return {"error": "State not found"}
-    # Return list of dish names
     return list(state_data.keys())
 
-@app.get("/api/recipe/{country}/{state}/{dish}")
+@app.get("/recipe/{country}/{state}/{dish}")
 def get_recipe(country: str, state: str, dish: str):
     try:
         recipe = RECIPE_DATA[country][state][dish]
@@ -46,29 +52,7 @@ def get_recipe(country: str, state: str, dish: str):
     except KeyError:
         return {"error": "Recipe not found"}
 
-
-
-# உங்கள் மற்ற API கோடிங்குகள் இங்கே இருக்கும்...
-
+# 3. Render போர்ட் மற்றும் சர்வர் ரன் செய்யும் பகுதி
 if __name__ == "__main__":
-    # Render தனியாக ஒரு Port-ஐ உருவாக்கும், அதை எடுக்க இதை பயன்படுத்த வேண்டும்
     port = int(os.environ.get("PORT", 8000))
-
-    # host முகவரியை "0.0.0.0" என்று கட்டாயம் கொடுக்க வேண்டும்
     uvicorn.run("main:app", host="0.0.0.0", port=port)
-
-    # Allow requests from React dev server, Localhost 5174, and Netlify
-    origins = [
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:5174",
-        "https://recipeyyy-finder.netlify.app"
-    ]
-
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=origins,
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
