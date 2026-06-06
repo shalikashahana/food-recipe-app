@@ -1,0 +1,232 @@
+/* ==== GLOBAL MIDNIGHT BLUE THEME ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0a1128; /* deepest midnight blue */
+  color: #e0e0e0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Login Page ---- */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: radial-gradient(circle at top, #1a2a5e, #0a1128);
+}
+
+.login-card {
+  background: #14213d;
+  padding: 3rem 4rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  border: 1px solid #2c3e6b;
+}
+
+.login-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #f0c05a; /* gold */
+  margin-bottom: 0.5rem;
+}
+
+.login-subtitle {
+  color: #aaa;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.google-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #ffffff;
+  color: #1e1e1e;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 40px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(240, 192, 90, 0.3);
+}
+
+.google-btn:hover {
+  background: #f0c05a;
+  color: #0a1128;
+  box-shadow: 0 6px 20px rgba(240, 192, 90, 0.5);
+  transform: translateY(-2px);
+}
+
+.google-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---- Dashboard ---- */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #0a1128;
+}
+
+.dashboard-header {
+  background: #14213d;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #2c3e6b;
+}
+
+.dashboard-header h1 {
+  color: #f0c05a;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.logout-btn {
+  background: transparent;
+  border: 1px solid #f0c05a;
+  color: #f0c05a;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  background: #f0c05a;
+  color: #0a1128;
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Selection Grid */
+.selection-grid h2 {
+  color: #f0c05a;
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.grid-item {
+  background: #14213d;
+  border: 1px solid #2c3e6b;
+  color: #e0e0e0;
+  padding: 1.2rem 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.grid-item:hover {
+  background: #1d3461;
+  border-color: #f0c05a;
+  color: #f0c05a;
+  transform: scale(1.04);
+  box-shadow: 0 8px 25px rgba(240, 192, 90, 0.2);
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #f0c05a;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s;
+  font-weight: 500;
+}
+
+.back-btn:hover {
+  color: #fff;
+}
+
+/* Recipe Detail */
+.recipe-detail {
+  background: #14213d;
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid #2c3e6b;
+}
+
+.recipe-detail h2 {
+  color: #f0c05a;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.recipe-section {
+  margin-bottom: 2rem;
+}
+
+.recipe-section h3 {
+  color: #f0c05a;
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #2c3e6b;
+  padding-bottom: 0.4rem;
+}
+
+.recipe-section ul,
+.recipe-section ol {
+  padding-left: 1.5rem;
+  line-height: 1.8;
+}
+
+.recipe-section li {
+  margin-bottom: 0.4rem;
+}
+
+/* Loading */
+.loading-spinner {
+  text-align: center;
+  padding: 3rem;
+  color: #f0c05a;
+  font-size: 1.2rem;
+}
+
+.app-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #f0c05a;
+  font-size: 1.5rem;
+}
